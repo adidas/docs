@@ -140,4 +140,4 @@ Static Resources are not found
 
 This was a curious problem. It seems that AWS has some automagic that will 
 execute some logic if domain.com/static is requested. The way around this is to
-change the name of your static asset folder.'' where post_date = '2017-03-07';
+change the name of your static asset folder.
