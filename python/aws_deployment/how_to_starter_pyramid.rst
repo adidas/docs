@@ -1,9 +1,11 @@
-==============================
 How-To: Pyramid Starter on AWS
 ==============================
 
-This is very similar to the Pyramid Hello World App process. It''s diffferent by
-the fact that there is more than just a application.py file and requirements.txt
+Created: 2017-03-07
+
+My previous post showed how to deploy a Pyramid Hello World App to 
+AWS. Deploying the Pyramid Starter App is similar. It is diffferent by
+the fact that there is more than just a application.py file and a requirements.txt
 file. However the concepts are the same. The key thing here is that these steps 
 do not require any knowledge of EB CLI. The project can be zipped up and 
 uploaded to the AWS instance.
@@ -11,8 +13,8 @@ uploaded to the AWS instance.
 Code Deployment 
 ===============
 
-We''ll use the same zip archive upload via console style that was used in the 
-Hello World app because it doesn't require knowledge of EB CLI or boto.
+We'll use the same zip archive upload via console style that was used in the 
+Hello World app post because it doesn't require knowledge of EB CLI or boto.
 
 
 Steps
@@ -25,14 +27,14 @@ Steps
 Create a local pyramid app 
 --------------------------
 
-Obviously, this is an open-ended process. For the purposes of this How-To I''ll
+Obviously, this is an open-ended process. For the purposes of this How-To I'll
 be using the pyramid starter project. Note that this uses the cookiecutter
 utility.
 
 Start by creating a directory for your project with your desired name. I prefer
-creating sub-folders under that directory for various flavors of the project,
-dev, prod, and test for example. I eventually use these for branches in a code
-versioning repository.
+creating sub-folders under that directory for various the different instances of 
+the project, for example dev, prod, and test. I eventually use these for 
+branches in a code versioning repository.
 
 In the desired folder create the project by using the following cookiecutter 
 command:
@@ -43,14 +45,15 @@ command:
 
 This will prompt you for a name twice. Use the name of your project.
 
-At this point, you have the foundation of your project. At this point create a
+At this point, you have the foundation of your project. Create a
 copy of the project directory, and continue installing the application in that
-new "install" copy. This is necessary as we need to deploy a project that
-doesn''t have a env folder to AWS.
+new "install" copy. This is used to create the requirements.txt so that the 
+project won't have a env folder that we don't want in AWS. There are certainly
+other ways to do this, but this is the way I chose to do it.
 
-In the "install" copy use virtualenv to create a new working directory under the
-root project folder. Name it env. Use the pip binary under this new virtualenv
-to do the following commands:
+In the "install" copy use virtualenv to create a virtual environment directory 
+under the root project folder. Name it env. Use the pip binary under this new virtualenv
+to execute the following commands:
 
 .. code:: bash
 
@@ -83,7 +86,8 @@ Using the "install" copy create a requirements.txt using pip
     env/bin/pip freeze > requirements.txt
 
 Remove the line that contains your application. AWS will not be able to find
-it, and this will cause it to error upon deployment
+it, and this will cause it to error upon deployment. However, there is a way
+around this, see the section below named "Install Your App without remoting in".
 
 Copy the requirements.txt to the original, pristine copy of your project.
 
@@ -94,16 +98,16 @@ Add a file called application.py that contains the following code:
     from pyramid.paster import get_app, setup_logging
     import os.path
     
-    ini_path = os.path.join(os.path.dirname(__file__), ''production.ini'')
+    ini_path = os.path.join(os.path.dirname(__file__), 'production.ini')
     setup_logging(ini_path)
-    application = get_app(ini_path, ''main'')
+    application = get_app(ini_path, 'main')
 
 AWS will use this to invoke your app for incoming requests.
 
 Deploy to AWS
 -------------
 
-Once the application is on the AWS EC3 instance we''ll need to install the
+Once the application is on the AWS EC3 instance we'll need to install the
 application via pip. Remote into the instance then find and activate your 
 virtualenv. The activate script can be found under 
 ``/opt/python/run/venv/bin/activate``
@@ -117,10 +121,10 @@ Once activated run the following commands to install your app.
 
 At this point your app will be working.
 
-Install Your App without SSH''ing in
------------------------------------
+Install Your App without remoting in
+------------------------------------
 
-To make it so that you don''t have to log into the EC2 instance you can add the
+To make it so that you don't have to remote into the EC2 instance you can add the
 following line to your requirements.txt
 
 ``/opt/python/ondeck/app/``
@@ -136,4 +140,4 @@ Static Resources are not found
 
 This was a curious problem. It seems that AWS has some automagic that will 
 execute some logic if domain.com/static is requested. The way around this is to
-change the name of your static asset folder.
+change the name of your static asset folder.'' where post_date = '2017-03-07';

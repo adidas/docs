@@ -1,25 +1,26 @@
-==================================
 How-To: Pyramid Hello World on AWS
 ==================================
+
+Created: 2017-03-05
+
+When I tried creating a Pyramid app on AWS I couldn't find any examples or
+guides. I put together the following How-To to document what I did to get the
+hello world app from Pyramid's documentation working on AWS. Please be aware
+that this is not a full fledged application, instead it is a single python
+script that serves up a very simple application. I also don't attempt to get
+into anything more than the basics. Things like SSL, database connections, and
+even version control software is ignored. The goal is to get a very simple app 
+going on AWS for learning purposes. I'll be going over the following:
 
 * Code Deployment 
 * Steps
 * Troublepoints
 
-When I tried creating a Pyramid app on AWS there were no definitive examples on
-the web. I put together the following How-To to document what I did to get the
-hello world app from Pyramid's documentation working on AWS. Please be aware
-that this is not a full fledged application, instead it is a single python
-script that serves up a very simple application. I also don't attempt to get
-into anything more than the basics. Things like SSL, database connections, and
-even version control software is ignored. The goal is to get a very rudimentary
-app going on AWS for learning purposes.
-
 Code Deployment 
 ===============
 
 There are a few ways to get code up to AWS. The easiest by far is to use the
-web console to upload the files. However, the other approaches are better for
+console to upload the files. However, the other approaches are better for
 automation.
 
 Ways to get code to AWS:
@@ -28,7 +29,8 @@ Ways to get code to AWS:
 * EB CLI 
 * Boto
 
-In this How-To we use the upload via console approach.
+In this How-To we use the upload via console approach since it doesn't require
+learning any AWS specific technologies.
 
 Steps
 =====
@@ -38,7 +40,7 @@ Steps
 * Create an key to ssh into the EC3 instance (optional)
 * Zip up files for deployment
 * Create an Elastic Beanstalk environment
-* Install supporting modules (skipped requirements.txt)
+* Install supporting modules (skipped requirements.txt step)
 
 
 Create a working python script
@@ -46,7 +48,7 @@ Create a working python script
 As mentioned above, this example implements the hello world code found in
 `Pyramid's documentation
 <http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/firstapp.html#hello-world>`_.
-The code is very simple, but it is meant to be a guide to understanding the
+The code is simple, but it is meant to be a guide to understanding the 
 fundamentals of what is needed to get a Pyramid app working.
 
 However, we cannot use this code as is. AWS requires that the "application" is
@@ -163,15 +165,15 @@ prompt pick the preconfigured python platform and choose the "Upload your code"
 option under the application code field. Then click the prompt to upload your
 zip file.
 
+If you used a requirements.txt file your application should be complete at this
+point.
+
 If you need SSH capabilities pick "Configure more options" and navigate to the
 security pane. There pick the key pair you created under the EC2 console.
 
-Also note that for SSH you'll need to app inbound access for port 22. This can
+Also note that for SSH to work you'll need to app inbound access for port 22. This can
 be done in the EC2 console under Network & Security > Security Groups. Pick the
 relevant security group and add an inbound rule at the bottom of the screen.
-
-If you used a requirements.txt file your application should be complete at this
-point.
 
 Install supporting modules (skipped requirements.txt)
 -----------------------------------------------------
@@ -184,7 +186,7 @@ First activate the virtual environment.
 
     . /opt/python/run/venv/bin/activate
 
-Next install zope.deprecation. Remember version 4.1.2
+Next install zope.deprecation. Use version 4.1.2. 4.2 has issues.
  
 .. code:: bash
 
@@ -220,7 +222,7 @@ in the basic configuration. It's under the advanced configs. Once this was done
 I was able to SSH into the machine.
 
 One other thing to note, I wasn't able to use the web browser connection since
-it used Java which doesn't work in Vivaldi.
+it used Java which I didn't have in my browser.
 
 application not found
 ---------------------
@@ -252,6 +254,6 @@ ImportError: No module named 'zope.deprecation'
 
 Problem: something is up?
 
-Solution: I did two things. First, changed to Pyramid 1.7 and zope.deprecation 
-4.1.2. Second, added a requirements.txt. The actual problem was that the latest
+Solution: I did two things at first. Initially I downgraded to Pyramid 1.7 and zope.deprecation 
+4.1.2. Then I added a requirements.txt. The actual problem was that the latest
 version of zope.deprecation broke something.
