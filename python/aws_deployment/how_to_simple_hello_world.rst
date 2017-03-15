@@ -15,6 +15,7 @@ going on AWS for learning purposes. I'll be going over the following:
 * Code Deployment 
 * Steps
 * Troublepoints
+* Complete Code
 
 Code Deployment 
 ===============
@@ -41,6 +42,7 @@ Steps
 * Zip up files for deployment
 * Create an Elastic Beanstalk environment
 * Install supporting modules (skipped requirements.txt step)
+* Accessing the test site
 
 
 Create a working python script
@@ -108,7 +110,7 @@ Add a requirements.txt file (optional)
 
 This step is optional, but recomended. It makes installation much easier and 
 remoting into the server isn't needed. Alternatively, you can remote in and
-install the packages. However, zope.deprecation 4.1.2 must be installed. 
+install the packages. 
 
 Regardless, if a requirements.txt file is included AWS will install the
 modules in this file when deploying the app. This makes deployment much faster
@@ -116,7 +118,7 @@ and easier.
 
 However, I did run into another issue. There appears to be an issue with
 zope.deprecation. It seems that the latest version of zope.deprecation broke 
-something. However, this is a topic for another post.
+something. Once a fix is discovered I will post an update.
 
 The requirements.txt that I used contained the following:
 
@@ -125,8 +127,8 @@ The requirements.txt that I used contained the following:
     zope.deprecation==4.1.2
     pyramid==1.8.1
 
-Create an key to ssh into the EC3 instance (optional)
------------------------------------------------------
+Create a key to ssh into the EC3 instance (optional)
+----------------------------------------------------
 
 If you need to access the EC2 instance via SSH then this step is needed.
 
@@ -166,7 +168,7 @@ option under the application code field. Then click the prompt to upload your
 zip file.
 
 If you used a requirements.txt file your application should be complete at this
-point.
+point, and you can submit the form to get the environment created.
 
 If you need SSH capabilities pick "Configure more options" and navigate to the
 security pane. There pick the key pair you created under the EC2 console.
@@ -178,7 +180,8 @@ relevant security group and add an inbound rule at the bottom of the screen.
 Install supporting modules (skipped requirements.txt)
 -----------------------------------------------------
 
-Once the instance is set up SSH into it, and execute the following commands:
+This step is required if you skipped creating the requirements.txt file. Once 
+the instance is set up SSH into it, and execute the following commands:
 
 First activate the virtual environment.
 
@@ -202,6 +205,13 @@ You may prefer this approach, but if you are setting up multiple instances a
 requirements file is preferred.
 
 At this point your application should be complete.
+
+Accessing the test site
+-----------------------
+On the environment page under the application page you'll see a URL that looks 
+something like `http://lowcost-env.28fm3zxyhj.us-west-2.elasticbeanstalk.com/`.
+This is your new site. Simply add hello/your-name-here to the end and you will be
+greeted by it.
 
 Troubleshooting
 ===============
@@ -257,3 +267,9 @@ Problem: something is up?
 Solution: I did two things at first. Initially I downgraded to Pyramid 1.7 and zope.deprecation 
 4.1.2. Then I added a requirements.txt. The actual problem was that the latest
 version of zope.deprecation broke something.
+
+Complete Code
+=============
+
+The code used in this How-To can be found at my `github account <https://github.com/adidas/aws_hello_pyramid>`_.
+It even has it packaged up into a zip file that can be uploaded to a AWS instance.
