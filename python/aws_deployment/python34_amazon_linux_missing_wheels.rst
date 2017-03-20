@@ -46,3 +46,12 @@ Long Story Short
 I have since posted on AWS's forums to get them to include a python34 build that does have the wheels. Hopefully, they do, but it's possible that they won't or that it will take them some time to get AMI's that include the proper Python install. There are work arounds, but they aren't pretty.
 
 I am going to avoid retelling the whole story here, but you can follow `my adventure <https://groups.google.com/forum/#!topic/pylons-discuss/MSAMBzwx7aQ>`_, `the bug on Red Hat <https://bugzilla.redhat.com/show_bug.cgi?id=1263057>`_, `my post on the AWS forum <https://forums.aws.amazon.com/thread.jspa?threadID=251803&tstart=0>`_, or `the stackoverflow thread that led me to the Red Hat bug <http://stackoverflow.com/questions/32618686/how-to-install-pip-in-centos-7>`_. Let's hope that this get resolved quickly and that I can remove the workarounds from my How-Tos.
+
+THANKS
+======
+Special thanks to the following people for providing support to help solve what was really happening
+
+* Steve Piercy
+* Bert JW Regeer
+* Tres Seaver
+* Michael Merickel 
