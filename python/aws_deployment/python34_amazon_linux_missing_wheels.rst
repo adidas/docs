@@ -3,7 +3,7 @@ python34 for Amazon Linux is Missing It's Wheels
 
 Created: 2017-03-20
 
-Since writting my first two posts I found out that I was doing it wrong. In the past I would use virtualenv to create
+Since writing my first two posts I found out that I was doing it wrong. In the past I would use virtualenv to create
 virtual environments. I would also use the activate script which I later found out "drops turds" into your shell
 environment. All of this was a result of my upbringing in Python, and I suspect that many people still have this issue to some degree. They use what they know works and stick with it.
 
