@@ -1,4 +1,4 @@
-How-To: Pyramid Hello World on AWS
+How-To: Hello Pyramid on AWS
 ==================================
 
 Created: 2017-03-05
@@ -120,6 +120,8 @@ However, I did run into another issue. There appears to be an issue with
 zope.deprecation. It seems that the latest version of zope.deprecation broke 
 something. Once a fix is discovered I will post an update.
 
+UPDATE: The issue is not with zope.deprecation. Instead it is with the python34 build for Amazon Linux/Red Hat. More detail in this `post <http://bruisedthumb.com/post/2017-03-20>`_.
+
 The requirements.txt that I used contained the following:
 
 .. code:: python
@@ -189,7 +191,7 @@ First activate the virtual environment.
 
     . /opt/python/run/venv/bin/activate
 
-Next install zope.deprecation. Use version 4.1.2. 4.2 has issues.
+Next install zope.deprecation. Use version 4.1.2 since Amazon Linux has a bad python34 build.
  
 .. code:: bash
 
@@ -262,11 +264,11 @@ Also, needed to move it all before the if statment.
 ImportError: No module named 'zope.deprecation'
 -----------------------------------------------
 
-Problem: something is up?
+Problem: AWS was unable to find zope.deprecation.
 
-Solution: I did two things at first. Initially I downgraded to Pyramid 1.7 and zope.deprecation 
-4.1.2. Then I added a requirements.txt. The actual problem was that the latest
-version of zope.deprecation broke something.
+Solution: Downgrade to zope.deprecation 4.1.2.
+
+UPDATE: The issue is not with zope.deprecation. Instead it is with the python34 build for Amazon Linux/Red Hat. More detail in this `post <http://bruisedthumb.com/post/2017-03-20>`_.
 
 Complete Code
 =============
