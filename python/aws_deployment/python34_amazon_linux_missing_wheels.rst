@@ -23,10 +23,9 @@ It turns out that Python has everything you need to create a virtual environment
 Also, avoid the activate script. Instead, use your newly created environment variable to invoke parts of your virtual
 environment directly. For example:
 
-.. code:: base
+.. code:: bash
 
     $VENV/bin/pserve development.ini
-
 
 It isn't Amazon Linux at Fault 
 ==============================
