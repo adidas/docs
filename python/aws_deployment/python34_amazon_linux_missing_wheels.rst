@@ -1,4 +1,4 @@
-python34 for Amazon Linux is Missing It's Wheels
+python34 for Amazon Linux is Missing Its Wheels
 ================================================
 
 Created: 2017-03-20

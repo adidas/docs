@@ -46,6 +46,7 @@ At this point, you have the foundation of your project. Use the following to cre
 project directory.
 
 .. code:: bash
+
     python -m venv env
 
 Note: You can also set an enviroment variable to make things easier.
