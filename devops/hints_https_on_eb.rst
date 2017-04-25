@@ -28,11 +28,13 @@ simplistic and that means you might not be able to use it, or you'll have to ada
 out the benefits and drawbacks that I noticed.
 
 Benefits:
+
 * Easy to use.
 * Quick to get started.
 * Little knowledge needed to deploy an HTTPS app.
 
 Drawbacks
+
 * Terminates HTTPS at the load balancer.
 * Can't be used with single instance deployments
 
@@ -106,7 +108,7 @@ instance uses Apache, and `their instructions <https://www.namecheap.com/support
 
 .. code:: bash
 
-openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
+    openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 
 and then follow the prompts. The important bit is the Common Name. It has to be the domain that you are securing.
 
@@ -129,11 +131,11 @@ There is no way of getting around it. You need to use `configuration files
 for me to get AWS to import and configure HTTPS. I also used `EB CLI
 <http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html>`_ To make environment deployments easier
 
-.. Disclaimer:: 
+.. topic:: Disclaimer
 
-This approach forced me to learn EB CLI which is a very powerful tool compared to AWS's web console. In my past
-articles, I described how python is broken with AWS. I think it is possible to add in a working python build  using EB
-CLI by installing a python build that properly supports pip, but that is an topic for another article.
+    This approach forced me to learn EB CLI which is a very powerful tool compared to AWS's web console. In my past
+    articles, I described how python is broken with AWS. I think it is possible to add in a working python build  using EB
+    CLI by installing a python build that properly supports pip, but that is an topic for another article.
 
 At this point AWS has some great `documentation <http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/https-
 singleinstance-python.html>`_. This will take you 95% of the way. However, it doesn't explain how to store your
@@ -150,7 +152,7 @@ private key. It is invoked by httpd with the following configuration line.
 
 .. code:: yaml
 
-SSLCACertificateFile "/etc/pki/tls/certs/bruisedthumb_com.ca-bundle"
+    SSLCACertificateFile "/etc/pki/tls/certs/bruisedthumb_com.ca-bundle"
 
 Obviously, I cheated a bit by referencing all of the docs I used, but to be fair, knowing the proper order to read them in is half, if not most, of the battle. In my case, I think I would have done the following if I knew all of this in the beginning:
 
