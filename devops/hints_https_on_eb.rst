@@ -164,7 +164,7 @@ Obviously, I cheated a bit by referencing all of the docs I used, but to be fair
 
 Once deployed your app should now be able to handle HTTPS traffic.
 
-A note on load balancing
+A Note on Load Balancing
 ---------------------------
 
 Brandon Schwartz (`twitter: @electraphant' <https://twitter.com/electraphant>`_) had pointed out the `AWS documentation needed to get HTTPS
