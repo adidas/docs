@@ -273,7 +273,7 @@ UPDATE: The issue is not with zope.deprecation. Instead it is with the python34 
 Complete Code
 =============
 
-The code used in this How-To can be found at my `github account <https://github.com/adidas/aws_hello_pyramid>`_.
+The code used in this How-To can be found at my `github account <https://github.com/danclark5/aws_hello_pyramid>`_.
 It even has it packaged up into a zip file that can be uploaded to a AWS instance.
 
 Last Update: 2017-03-21

@@ -149,7 +149,7 @@ It turns out Ubuntu may cause pip to report that pkg-resources is installed. `Th
 Complete Code
 =============
 
-The code used in this How-To can be found at my `github account <https://github.com/adidas/aws_pyramid_starter>`_.
+The code used in this How-To can be found at my `github account <https://github.com/danclark5/aws_pyramid_starter>`_.
 It even has it packaged up into a zip file that can be uploaded to a AWS instance.
 
 Last Update: 2017-03-22

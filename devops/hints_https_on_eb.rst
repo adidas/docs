@@ -1,7 +1,7 @@
 Hints: Deploying an HTTPS-enabled, Elastic Beanstalk, Python/Pyramid application
-====================================
+================================================================================
 
-Created: 2017-04-16
+Created: 2017-04-25
 
 Over the last few weeks, I have been learning the best way to deploy a HTTPS-enabled application through trial and
 error. Three possible options are through the AWS Certificate Manager (ACM), Let's Encrypt, and using your own CA issued
@@ -164,6 +164,16 @@ Obviously, I cheated a bit by referencing all of the docs I used, but to be fair
 
 Once deployed your app should now be able to handle HTTPS traffic.
 
+A note on load balancing
+---------------------------
+
+Brandon Schwartz (`twitter: @electraphant' <https://twitter.com/electraphant>`_) had pointed out the `AWS documentation needed to get HTTPS
+working on a load balancer via passthrough <http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/https-tcp-passthrough.html>`_.
+
+Basically, they instruct you to setup your application to handle HTTPS requests and then add a rule to the security
+group to allow inbound traffic on port 443. I haven't tried it out myself, but it looks fairly easy. I'd also like to
+think that you can skip the first step if your single instance application is working with https.
+
 Things I might be forgetting
 ----------------------------
 
@@ -174,3 +184,5 @@ This was a tough trial and error process for me. I kept trying different things 
 * Setting up Route53 so that it points to a URL instead of an IP that could change. I might even be wrong here.
 
 As a final reminder, this was written as a set of hints. Your scenario might be different. You might be using nginx instead of apache, you might need to use a load balacer, your CA might supply different files, you might be using a wildcard certificate, and etc. As time goes on I'll refine this article so that it is more explicit. If you need help with your case feel free to reach out to me on twitter, and I'll try my best to guide you.  
+
+Last Update: 2017-08-05
