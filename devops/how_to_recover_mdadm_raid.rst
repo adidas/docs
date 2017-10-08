@@ -14,6 +14,7 @@ for the exact same purposes. There was a good chance that if one died the other 
 **When faced with this type of drive failure your first step needs to be a backup immediately.**
 
 You may also want to take note of various system config files such as
+
 * /etc/samba/smb.config
 * /etc/network/interfaces
 * /etc/fstab
